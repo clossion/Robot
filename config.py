@@ -6,7 +6,7 @@ gameWaiting_time = 3
 data_waiting_time = 1
 
 # 飞机起飞时的速度
-takeoff_speed = 400  # 你可以根据需要调整这个值
+takeoff_speed = 300  # 你可以根据需要调整这个值
 
 # 飞机最大节流阀值
 max_throttle = 110  # 你可以根据需要调整这个值
@@ -15,7 +15,9 @@ max_throttle = 110  # 你可以根据需要调整这个值
 flight_altitude = 850  # 你可以根据需要调整这个值
 
 # 爬升角度
-climb_angle = 30  # 你可以根据需要调整这个值
+climb_angle = 15  # 你可以根据需要调整这个值
 
 # 拖动速度
 drag_speed = 1  # 你可以根据需要调整这个值
+
+retry_interval = 1

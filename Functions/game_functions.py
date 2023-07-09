@@ -6,17 +6,18 @@ import os
 import cv2
 import pytesseract
 import numpy as np
-from pynput.keyboard import Controller, Key
-from pynput.mouse import Button
+from pynput.keyboard import Key, Controller as KeyboardController
+from pynput.mouse import Button, Controller as MouseController
 from .game_message import image_message_dict, image_action_dict
-from PIL import ImageGrab, Image
-
+from PIL import ImageGrab
+import win32api
+import win32con
 screen_width, screen_height = pyautogui.size()
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-# 创建一个键盘控制器和鼠标控制器
-keyboard = Controller()
-mouse = Controller()
+keyboard = KeyboardController()
+mouse = MouseController()
+
 
 def press_key(key, duration=0.1):
     # 如果key是一个字符串，我们需要将其转换为正确的Key对象，或者保持为字符串
@@ -34,11 +35,11 @@ def press_key(key, duration=0.1):
     print(" 执行操作完成")
 
 
+# 控制鼠标移动
+def move_mouse(x, y):
 
-def move_mouse(location):
-    # 移动鼠标到指定的位置
-    mouse.position = location
-    print(" 执行操作完成")
+    # 移动鼠标到目标位置
+    win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, x, y)
 
 def click_mouse(location):
     # 移动鼠标到指定的位置并点击
@@ -111,7 +112,7 @@ def get_text_from_color(bbox, lower_color, upper_color):
     result = cv2.bitwise_and(img_cv, img_cv, mask=mask)
 
     # 将 OpenCV 图片转换回 PIL 图片
-    img_pil = Image.fromarray(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
+    img_pil = Images.fromarray(cv2.cvtColor(result, cv2.COLOR_BGR2RGB))
 
     # 使用 pytesseract 识别图片中的文字
     text = pytesseract.image_to_string(img_pil, config='-c preserve_inter-word_spaces=1')

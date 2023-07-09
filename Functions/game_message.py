@@ -24,12 +24,15 @@ state_key_dict = {
     'IAS': 'IAS, km/h',
     'SPD': 'TAS, km/h',
     'ALT': 'H, m',
+    'Pitch': 'aviahorizon_pitch',
+    'Pitch1': 'aviahorizon_pitch1',
     # 添加其他键的缩写
 }
 
 map_obj_key_dict = {
     'enemyAir': 'Fighter',
     'me': 'Player',
+    'point': 'bombing_point',
     # 添加其他键的缩写
 }
 

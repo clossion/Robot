@@ -47,6 +47,19 @@ class PortDataParser:
         else:
             return "Invalid port name or no key dictionary for this port"
 
+    async def get_indicators_data(self, keys):
+        url = self.ports.get("INDICATORS")
+        if url:
+            async with self.session.get(url) as response:
+                data = await response.json()
+                if isinstance(data, dict):
+                    parsed_data = await self.parse_state_data(data, keys)
+                    return parsed_data
+                else:
+                    return data
+        else:
+            return "Invalid port name or no key dictionary for this port"
+
     async def get_map_obj_data(self, keys):
         url = self.ports.get("MAP_OBJ")
         if url:
